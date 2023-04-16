@@ -9,3 +9,7 @@ add_executable(app main.cpp
                     terminal-renderer/terminal-renderer.cpp)
 
 target_link_libraries(app PRIVATE cpr::cpr)
+
+target_link_libraries(app
+    PRIVATE ftxui::screen
+    PRIVATE ftxui::dom)

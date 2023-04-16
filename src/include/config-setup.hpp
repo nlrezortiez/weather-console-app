@@ -64,10 +64,15 @@ public:
         return forecast_days_;
     }
 
+    std::size_t getConfigCitiesAmount() const noexcept {
+        return cities_amount;
+    }
+    
     void printConfigData() const noexcept;
 
 private:
     std::vector<std::unique_ptr<City>>  cities_data_;
     std::size_t update_time_{};
     std::size_t forecast_days_{};
+    std::size_t cities_amount{};
 };

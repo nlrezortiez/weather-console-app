@@ -1,4 +1,5 @@
 #include "include/app.hpp"
+#include <ftxui/screen/screen.hpp>
 
 int main(int argc, char** argv) {
     if (argc < 1) {

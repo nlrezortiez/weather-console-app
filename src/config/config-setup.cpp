@@ -8,8 +8,9 @@ void Config::loadConfig(const char* config) {
 
     update_time_ = d_config["updateTime"].GetInt();
     forecast_days_ = d_config["forecastDays"].GetInt();
+    cities_amount = d_config["citiesAmount"].GetInt();
 
-    auto cities = d_config["city"].GetArray();
+    auto cities = d_config["cities"].GetArray();
     for (int i = 0; i < amount_of_cities; ++i) {
         cities_data_.emplace_back(
             new City(cities[i].GetString(), 0, 0));
@@ -19,6 +20,7 @@ void Config::loadConfig(const char* config) {
 }
 
 void Config::printConfigData() const noexcept {
+    std::cout << "cities amount : " << cities_amount << std::endl;
     std::cout << "update time : " << update_time_ << std::endl;
     std::cout << "forecast days : " << forecast_days_ << std::endl;
     for (const auto& city : cities_data_) {

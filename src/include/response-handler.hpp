@@ -5,6 +5,7 @@
 #include <rapidjson/istreamwrapper.h>
 
 #include <iostream>
+#include <vector>
 
 class Forecast;
 class Config;

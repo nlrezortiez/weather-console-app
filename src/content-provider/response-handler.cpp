@@ -42,18 +42,46 @@ void ForecastResponseHandler::sendRequest(
             {"longitude", std::to_string(forecast.getLongitude())},
             {"daily",
              "weathercode,temperature_2m_max,apparent_temperature_max,sunrise,"
-             "sunset,precipitation_sum,winddirection_10m_dominant"},
+             "sunset,precipitation_sum,windspeed_10m"},
             {"forecast_days", std::to_string(config.getConfigForecastDays())},
             {"timezone", forecast.getTimezone()}});
-    std::cout << response_.url << std::endl;
+    //std::cout << response_.url << std::endl;
 }
 
 Forecast ForecastResponseHandler::parseResponse() {
-    return Forecast({0, 0}, "qwe");
+    auto daily_obj =
+        json_response_.Parse(response_.text.c_str())["daily"].GetObj();
+
+    auto date_array = daily_obj["time"].GetArray();
+    auto weather_code_array = daily_obj["weathercode"].GetArray();
+    auto temperature_2m_max_array = daily_obj["temperature_2m_max"].GetArray();
+    auto apparent_temperature_max_array =
+        daily_obj["apparent_temperature_max"].GetArray();
+    auto sunrise_time_array = daily_obj["sunrise"].GetArray();
+    auto sunset_time_array = daily_obj["sunset"].GetArray();
+    auto precipitation_sum_array = daily_obj["precipitation_sum"].GetArray();
+    auto windspeed_10m_array = daily_obj["windspeed_10m"].GetArray();
+
+    int forecast_days = date_array.Size();
+    std::vector<Forecast> data_array(forecast_days);
+
+    /*for (int i = 0; i < forecast_days; ++i) {
+        data_array[i].configure(
+            date_array[i].GetString(),
+            sunrise_time_array[i].GetString(),
+            sunset_time_array[i].GetString(),
+            weather_code_array[i].GetInt(),
+            temperature_2m_max_array[i].GetDouble(),
+            apparent_temperature_max_array[i].GetDouble(),
+            precipitation_sum_array[i].GetDouble(),
+            windspeed_10m_array[i].GetInt());
+    }*/
+
+    return {{0, 0}, "qwe"};
 }
 
 bool ForecastResponseHandler::checkSuccess() {
-
+    return true; //TODO
 }
 
 void TimezoneConvertResponseHandler::sendRequest(const std::string& city_name) {

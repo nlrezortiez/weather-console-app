@@ -7,10 +7,14 @@
 
 class Forecast {
 public:
+
+    Forecast() = default;
+
     Forecast(std::pair<double, double> coordinates, std::string timezone)
         : latitude(coordinates.first), longitude(coordinates.second),
           timezone(std::move(timezone)) {
     }
+
     double getLatitude() const noexcept {
         return latitude;
     }
@@ -23,17 +27,29 @@ public:
         return timezone;
     }
 
+    void configure(
+        std::string date_s,
+        std::string sunrise_datetime_s,
+        std::string sunset_datetime_s,
+        int weathercode,
+        double temperature_2m_max,
+        double apparent_temperature_max,
+        int precipitation_sum,
+        int windspeed_10m);
+
 private:
     double latitude;
     double longitude;
     std::string timezone;
     std::string title;
+    std::string date_s;
+    std::string sunrise_datetime_s;
+    std::string sunset_datetime_s;
     int weather_code;
     double temperature_2m_max;
     double apparent_temperature_max;
     int precipitation_sum;
-    int precipitation_probability_max;
-    int windspeed_10m_max;
+    int windspeed_10m;
 };
 
 class ForecastAdapter {
