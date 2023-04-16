@@ -1,8 +1,8 @@
 #pragma once
 
 #include <cpr/cpr.h>
-#include <rapidjson/document.h>
-#include <rapidjson/istreamwrapper.h>
+#include "rapidjson/document.h"
+#include "rapidjson/istreamwrapper.h"
 
 #include <iostream>
 #include <vector>

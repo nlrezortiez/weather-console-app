@@ -1,5 +1,3 @@
-find_package(cpr REQUIRED)
-
 add_executable(app main.cpp
                     content-provider/response-handler.cpp
                     content-provider/app.cpp
